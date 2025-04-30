@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Periodic Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .periodic-table {
+      display: grid;
+      grid-template-columns: repeat(18, 60px);
+      gap: 5px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .element {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .element:hover {
+      transform: scale(1.1);
+      z-index: 10;
+    }
+    .symbol {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .number {
+      font-size: 10px;
+    }
+    .tooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 8px;
+      border-radius: 5px;
+      display: none;
+      pointer-events: none;
+      font-size: 12px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Modern Periodic Table</h1>
+  <div class="periodic-table" id="periodicTable"></div>
+  <div class="tooltip" id="tooltip"></div>  <script>
+    const elements = [
+      { number: 1, symbol: "H", name: "Hydrogen", group: 1, period: 1 },
+      { number: 2, symbol: "He", name: "Helium", group: 18, period: 1 },
+      { number: 3, symbol: "Li", name: "Lithium", group: 1, period: 2 },
+      { number: 4, symbol: "Be", name: "Beryllium", group: 2, period: 2 },
+      { number: 5, symbol: "B", name: "Boron", group: 13, period: 2 },
+      { number: 6, symbol: "C", name: "Carbon", group: 14, period: 2 },
+      { number: 7, symbol: "N", name: "Nitrogen", group: 15, period: 2 },
+      { number: 8, symbol: "O", name: "Oxygen", group: 16, period: 2 },
+      { number: 9, symbol: "F", name: "Fluorine", group: 17, period: 2 },
+      { number: 10, symbol: "Ne", name: "Neon", group: 18, period: 2 },
+      // Add more elements as needed
+    ];
+
+    const table = document.getElementById("periodicTable");
+    const tooltip = document.getElementById("tooltip");
+
+    const createElement = (element) => {
+      const el = document.createElement("div");
+      el.className = "element";
+      el.style.gridColumn = element.group;
+      el.style.gridRow = element.period;
+      el.innerHTML = `<div class="number">${element.number}</div>
+                      <div class="symbol">${element.symbol}</div>`;
+      el.addEventListener("mouseover", (e) => {
+        tooltip.innerHTML = `<strong>${element.name}</strong><br>Atomic No: ${element.number}<br>Group: ${element.group}<br>Period: ${element.period}`;
+        tooltip.style.display = "block";
+        tooltip.style.left = e.pageX + 10 + "px";
+        tooltip.style.top = e.pageY + 10 + "px";
+      });
+      el.addEventListener("mouseout", () => {
+        tooltip.style.display = "none";
+      });
+      el.addEventListener("mousemove", (e) => {
+        tooltip.style.left = e.pageX + 10 + "px";
+        tooltip.style.top = e.pageY + 10 + "px";
+      });
+      return el;
+    };
+
+    elements.forEach((element) => {
+      table.appendChild(createElement(element));
+    });
+  </script></body>
+</html>
