@@ -16,6 +16,7 @@
     .periodic-table {
       display: grid;
       grid-template-columns: repeat(18, 60px);
+      grid-auto-rows: 60px;
       gap: 5px;
       justify-content: center;
       margin-top: 20px;
@@ -23,11 +24,12 @@
     .element {
       background-color: #fff;
       border: 1px solid #ccc;
-      padding: 8px;
+      padding: 5px;
       text-align: center;
       font-size: 12px;
       cursor: pointer;
       transition: transform 0.2s;
+      position: relative;
     }
     .element:hover {
       transform: scale(1.1);
@@ -68,7 +70,16 @@
       { number: 8, symbol: "O", name: "Oxygen", group: 16, period: 2 },
       { number: 9, symbol: "F", name: "Fluorine", group: 17, period: 2 },
       { number: 10, symbol: "Ne", name: "Neon", group: 18, period: 2 },
-      // Add more elements as needed
+      { number: 11, symbol: "Na", name: "Sodium", group: 1, period: 3 },
+      { number: 12, symbol: "Mg", name: "Magnesium", group: 2, period: 3 },
+      { number: 13, symbol: "Al", name: "Aluminum", group: 13, period: 3 },
+      { number: 14, symbol: "Si", name: "Silicon", group: 14, period: 3 },
+      { number: 15, symbol: "P", name: "Phosphorus", group: 15, period: 3 },
+      { number: 16, symbol: "S", name: "Sulfur", group: 16, period: 3 },
+      { number: 17, symbol: "Cl", name: "Chlorine", group: 17, period: 3 },
+      { number: 18, symbol: "Ar", name: "Argon", group: 18, period: 3 },
+      { number: 19, symbol: "K", name: "Potassium", group: 1, period: 4 },
+      { number: 20, symbol: "Ca", name: "Calcium", group: 2, period: 4 }
     ];
 
     const table = document.getElementById("periodicTable");
